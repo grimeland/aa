@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BottomSection from '@/components/BottomSection'
 import { images } from '@/lib/images'
 import { getTiltakByPakke, getStatusIcon, getTidsperspektivTekst } from '@/lib/tiltak'
 
@@ -12,24 +14,32 @@ export default function FysiskInfrastrukturPage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center text-white">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70 z-10"></div>
+        <section className="relative min-h-[70vh] flex flex-col text-white">
+          <div className="absolute inset-0 bg-black/20 z-10"></div>
           <div 
             className="absolute inset-0 bg-cover bg-center z-0"
             style={{
               backgroundImage: `url('${images.fysiskInfrastruktur}')`
             }}
           ></div>
-          <div className="relative z-20 container mx-auto px-4 text-center py-32">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <div className="relative z-20 container mx-auto px-4 text-center flex-1 flex flex-col justify-center">
+            <span className="bg-neutral-light text-gray-800 px-3 py-1 text-sm font-medium rounded inline-block mx-auto mb-6">
+              Tiltakspakke
+            </span>
+            <h1 className="text-4xl md:text-6xl font-normal mb-6">
               Fysisk infrastruktur og besøksflyt
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 opacity-90">
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
               Teknisk planlegging, oppgradering av eksisterende anlegg og nye løsninger for å redusere slitasje og forbedre opplevelsen.
             </p>
-            <button className="bg-white text-primary-dark px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity">
-              Les mer
-            </button>
+          </div>
+          <div className="relative z-20 pb-12 text-center">
+            <a href="#tiltak" className="text-white/90 hover:text-white transition-colors flex flex-col items-center gap-2">
+              <span className="text-lg">Utforsk tiltakene</span>
+              <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
           </div>
         </section>
 
@@ -67,91 +77,49 @@ export default function FysiskInfrastrukturPage() {
         </section>
 
         {/* Forutsetninger Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-neutral-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
-                Forutsetninger: Nødvendige aktører, finansiering og relevant lovverk
-              </h2>
+              <span className="inline-block bg-gray-900 text-white px-4 py-1.5 text-sm rounded-full mb-8">
+                Forutsetninger
+              </span>
               <div className="grid md:grid-cols-3 gap-6">
                 {/* Aktører Card */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-primary-dark">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
+                <div className="bg-white rounded-2xl p-6">
+                  <p className="text-sm text-gray-500 mb-2">Nødvendige aktører</p>
+                  <h3 className="text-xl font-normal text-gray-800 mb-6">Hvem må involveres?</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-neutral-light text-gray-700 px-3 py-1.5 text-sm rounded-full">Moskenes kommune</span>
+                    <span className="bg-neutral-light text-gray-700 px-3 py-1.5 text-sm rounded-full">Grunneiere i Å</span>
+                    <span className="bg-neutral-light text-gray-700 px-3 py-1.5 text-sm rounded-full">Å og Brygga Restaurant</span>
+                    <span className="bg-neutral-light text-gray-700 px-3 py-1.5 text-sm rounded-full">Statens vegvesen</span>
+                    <span className="bg-neutral-light text-gray-700 px-3 py-1.5 text-sm rounded-full">Statsforvalteren i Nordland</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-800">Aktører</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Kommune</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Regjering</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Innbyggere</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Turister</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Frivillige</span>
-                    </li>
-                  </ul>
                 </div>
 
                 {/* Finansiering Card */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-primary-dark">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                <div className="bg-white rounded-2xl p-6">
+                  <p className="text-sm text-gray-500 mb-2">Finansiering</p>
+                  <h3 className="text-xl font-normal text-gray-800 mb-6">Hvordan kan tiltakene finansieres?</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-green-100 text-gray-700 px-3 py-1.5 text-sm rounded-full">Nordland fylke</span>
+                    <span className="bg-green-100 text-gray-700 px-3 py-1.5 text-sm rounded-full">Miljødirektoratet</span>
+                    <span className="bg-green-100 text-gray-700 px-3 py-1.5 text-sm rounded-full">Kommunebudsjettet</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-800">Finansiering</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Statlig støtte</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Kommunale midler</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Private investeringer</span>
-                    </li>
-                  </ul>
                 </div>
 
                 {/* Lovverk Card */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-primary-dark">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                <div className="bg-white rounded-2xl p-6">
+                  <p className="text-sm text-gray-500 mb-2">Relevante lovverk</p>
+                  <h3 className="text-xl font-normal text-gray-800 mb-6">Hva er det juridiske handlingsrommet?</h3>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="bg-blue-100 text-gray-700 px-3 py-1.5 text-sm rounded-full">§ Plan- og bygningsloven</span>
+                    <span className="bg-blue-100 text-gray-700 px-3 py-1.5 text-sm rounded-full">§ Vegtrafikkoven</span>
+                    <span className="bg-blue-100 text-gray-700 px-3 py-1.5 text-sm rounded-full">§ Naturmangfoldloven</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-800">Lovverk</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Plan- og bygningsloven</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Naturmangfoldloven</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Forurensningsloven</span>
-                    </li>
-                  </ul>
+                  <p className="text-sm text-gray-600">
+                    Kommunen kan regulere parkering, etablere bilfri sone, styre ferdsel i sårbare områder og verne hekkeplasser.
+                  </p>
                 </div>
               </div>
             </div>
@@ -159,23 +127,19 @@ export default function FysiskInfrastrukturPage() {
         </section>
 
         {/* Utforsk tiltakene Section */}
-        <section className="py-20 bg-neutral-light">
+        <section id="tiltak" className="py-20 bg-neutral-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Utforsk tiltakene</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 text-center">Utforsk tiltakene</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {tiltak.map((item) => (
                   <Link 
                     key={item.id} 
                     href={`/tiltak/${item.tiltakspakke}/${item.id}`}
-                    className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                    className="bg-white rounded-2xl p-4 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow"
                   >
-                    <div className="relative h-48 bg-cover bg-center">
-                      <div className="absolute top-3 left-3">
-                        <span className="bg-white text-gray-800 px-2 py-1 text-xs font-medium rounded">
-                          Tiltak
-                        </span>
-                      </div>
+                    {/* Image */}
+                    <div className="relative h-44 rounded-xl overflow-hidden mb-4">
                       <div 
                         className="w-full h-full bg-cover bg-center"
                         style={{
@@ -183,17 +147,19 @@ export default function FysiskInfrastrukturPage() {
                         }}
                       ></div>
                     </div>
-                    <div className="p-6">
-                      <p className="text-gray-500 text-sm mb-2">{getTidsperspektivTekst(item.tidsperspektiv)}</p>
-                      <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-primary-dark transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                    
+                    {/* Content */}
+                    <div className="px-1 flex flex-col flex-grow">
+                      <p className="text-gray-500 text-sm mb-1">{getTidsperspektivTekst(item.tidsperspektiv)}</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">{item.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed flex-grow">
                         {item.beskrivelse}
                       </p>
-                      <button className="w-full bg-primary-dark text-white py-2 px-4 rounded-lg font-medium hover:opacity-90 transition-opacity text-sm">
-                        Utforsk tiltak
-                      </button>
+                      
+                      {/* Button */}
+                      <span className="block text-center border border-gray-300 text-gray-700 py-2.5 px-4 rounded-full text-sm mt-6">
+                        Se tiltak
+                      </span>
                     </div>
                   </Link>
                 ))}
@@ -202,46 +168,55 @@ export default function FysiskInfrastrukturPage() {
           </div>
         </section>
 
-        {/* Hvem ser vi etter? Section */}
-        <section className="py-20 bg-white">
+        {/* Hvordan pakken svarer til prinsippene Section */}
+        <section className="py-20 bg-neutral-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Hvem ser vi etter?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 text-center">Hvordan pakken svarer til prinsippene</h2>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-neutral-light rounded-lg p-6">
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-primary-dark">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+                <div className="bg-white rounded-2xl p-8">
+                  <div className="mb-6 h-24">
+                    <Image 
+                      src={images.lokalsamfunn} 
+                      alt="Lokalsamfunn" 
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-800">Nye perspektiver og løsninger</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Vi søker etter personer og organisasjoner som kan bidra med innovative løsninger 
-                    og nye perspektiver på besøksforvaltning.
+                  <p className="text-gray-500 text-sm mb-2">Sikre lokalsamfunnets interesser</p>
+                  <p className="text-gray-900 text-lg leading-relaxed">
+                    Gir lokalsamfunnet kontroll over eget sted, reduserer kaos og konflikter
                   </p>
                 </div>
-                <div className="bg-neutral-light rounded-lg p-6">
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-primary-dark">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                <div className="bg-white rounded-2xl p-8">
+                  <div className="mb-6 h-24">
+                    <Image 
+                      src={images.natur} 
+                      alt="Natur" 
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-800">Lokal forankring og engasjement</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Lokale aktører med kunnskap om området og engasjement for å bevare Ås unike karakter 
-                    er viktige for prosjektets suksess.
+                  <p className="text-gray-500 text-sm mb-2">Beskytte naturen</p>
+                  <p className="text-gray-900 text-lg leading-relaxed">
+                    Reduserer slitasje, beskytter hekkeplasser for krykkjer, leder folk bort fra sårbare områder
                   </p>
                 </div>
-                <div className="bg-neutral-light rounded-lg p-6">
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-primary-dark">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                <div className="bg-white rounded-2xl p-8">
+                  <div className="mb-6 h-24">
+                    <Image 
+                      src={images.turister} 
+                      alt="Turister" 
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-800">Digitale verktøy og plattformer</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Ekspertise innen digitale løsninger og plattformer som kan støtte besøksforvaltning 
-                    og kommunikasjon med besøkende.
+                  <p className="text-gray-500 text-sm mb-2">Bevisstgjøre turister</p>
+                  <p className="text-gray-900 text-lg leading-relaxed">
+                    Skaper forutsigbarhet, bedre opplevelse og tydelige møtepunkter med stedet
                   </p>
                 </div>
               </div>
@@ -249,24 +224,34 @@ export default function FysiskInfrastrukturPage() {
           </div>
         </section>
 
-        {/* Mid-section Banner */}
-        <section className="relative py-32 text-white">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60 z-10"></div>
-          <div 
-            className="absolute inset-0 bg-cover bg-center z-0"
-            style={{
-              backgroundImage: `url('${images.bakgrunn}')`
-            }}
-          ></div>
-          <div className="relative z-20 container mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Lokalt forankret. Helhetlig samarbeid.
-            </h2>
-            <Link href="/kontakt" className="btn-primary inline-block">
-              Bli med
-            </Link>
+        {/* Hva sier folk? Section */}
+        <section className="pt-20 pb-32 bg-neutral-light">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-16 text-gray-800 text-center">Hva sier folk?</h2>
+              <div className="grid md:grid-cols-3 gap-0">
+                <div className="px-8 md:border-r border-gray-300">
+                  <p className="text-gray-800 text-lg italic text-center leading-relaxed">
+                    "Campervans parkerer og turister gjør fra seg i parken. Hunden min tråkket i menneskebæsj. Ikke koselig."
+                  </p>
+                </div>
+                <div className="px-8 md:border-r border-gray-300 mt-8 md:mt-0">
+                  <p className="text-gray-800 text-lg italic text-center leading-relaxed">
+                    "Veldig mange turister vil se «the view». De går inn i hagen vår, tar bilde av barna våre og kjører for fort på vegen. De har ikke toalett. De parkerer på private eiendommer."
+                  </p>
+                </div>
+                <div className="px-8 mt-8 md:mt-0">
+                  <p className="text-gray-800 text-lg italic text-center leading-relaxed">
+                    "Turistbusser parkerer hvor som helst og slipper av turister hvor som helst, til og med mellom hus."
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* Bottom Section */}
+        <BottomSection />
       </main>
       <Footer />
     </>

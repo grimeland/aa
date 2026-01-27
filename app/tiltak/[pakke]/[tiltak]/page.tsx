@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BottomSection from '@/components/BottomSection'
 import { getTiltakById, getStatusIcon, getKompleksitetDots, type Tiltakspakke } from '@/lib/tiltak'
 import { notFound } from 'next/navigation'
 
@@ -122,6 +123,9 @@ export default function TiltakDetailPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {/* Bottom Section */}
+        <BottomSection />
       </main>
       <Footer />
     </>

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BottomSection from '@/components/BottomSection'
+import Carousel from '@/components/Carousel'
 import { images, getImage } from '@/lib/images'
 
 export default function Home() {
@@ -203,81 +205,56 @@ export default function Home() {
         </section>
 
         {/* Explore Initiatives Section */}
-        <section className="bg-neutral-light py-32">
+        <section className="bg-neutral-light pt-32 pb-48 overflow-hidden">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 text-center">
               Utforsk tiltakene
             </h2>
-            <div className="overflow-x-auto pb-4">
-              <div className="flex gap-6 min-w-max md:min-w-0 md:grid md:grid-cols-4">
-                {[
-                  {
-                    title: "Toaletter og hygiene",
-                    description: "Mobile toalettløsninger, strategisk plassering av toaletter og urinrør ved restaurant og grøntområder.",
-                    image: images.toaletterHygiene
-                  },
-                  {
-                    title: "Parkering og trafikk",
-                    description: "Løsninger for å håndtere parkeringspresset og forbedre trafikkflyten i området.",
-                    image: images.parkeringTrafikk
-                  },
-                  {
-                    title: "Informasjonssystemer",
-                    description: "Digitale og fysiske løsninger for å formidle viktig informasjon til besøkende.",
-                    image: images.informasjonssystemer
-                  },
-                  {
-                    title: "Naturvern og bærekraft",
-                    description: "Tiltak for å beskytte det unike naturmiljøet og fremme bærekraftig turisme.",
-                    image: images.naturvernBaerekraft
-                  }
-                ].map((initiative, index) => (
-                  <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg min-w-[300px] md:min-w-0 flex-shrink-0 md:flex-shrink">
-                    <div className="relative h-48 bg-cover bg-center">
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-black text-white px-3 py-1 text-sm font-medium">Tiltak</span>
-                      </div>
-                      <div 
-                        className="w-full h-full bg-cover bg-center"
-                        style={{
-                          backgroundImage: `url('${initiative.image}')`
-                        }}
-                      ></div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-3 text-gray-800">{initiative.title}</h3>
-                      <p className="text-gray-600 mb-4 text-sm leading-relaxed">
-                        {initiative.description}
-                      </p>
-                      <Link href="/tiltak" className="btn-primary inline-block text-sm">
-                        Utforsk tiltak
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
+          <Carousel 
+            items={[
+              {
+                tag: "Fysisk infrastruktur",
+                title: "Toaletter og hygiene",
+                image: images.toaletterHygiene,
+                href: "/tiltak/fysisk-infrastruktur/toaletter-hygiene"
+              },
+              {
+                tag: "Fysisk infrastruktur",
+                title: "Parkering og flyt",
+                image: images.parkeringTrafikk,
+                href: "/tiltak/fysisk-infrastruktur/parkering-flyt"
+              },
+              {
+                tag: "Fysisk infrastruktur",
+                title: "Søppelhåndtering",
+                image: images.soppelhandtering,
+                href: "/tiltak/fysisk-infrastruktur/soppelhandtering"
+              },
+              {
+                tag: "Fysisk infrastruktur",
+                title: "Bilfri sone i sentrum",
+                image: images.bilfriSone,
+                href: "/tiltak/fysisk-infrastruktur/bilfri-sone"
+              },
+              {
+                tag: "Fysisk infrastruktur",
+                title: "Grønn mobilitet",
+                image: images.gronnMobilitet,
+                href: "/tiltak/fysisk-infrastruktur/gronn-mobilitet"
+              },
+              {
+                tag: "Fysisk infrastruktur",
+                title: "Naturrestaurering",
+                image: images.naturrestaurering,
+                href: "/tiltak/fysisk-infrastruktur/naturrestaurering"
+              }
+            ]}
+          />
         </section>
 
-        {/* Project Background Section */}
-        <section className="relative py-48 min-h-[500px]">
-          <div 
-            className="absolute inset-0 bg-cover bg-center z-0"
-            style={{
-              backgroundImage: `url('${images.bakgrunn}')`
-            }}
-          ></div>
-          <div className="relative z-20 container mx-auto px-4 text-center">
-            <p className="text-sm text-gray-600 mb-4">Bakgrunnen for prosjektet</p>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-primary-dark">
-              Lokalt forankret. Helhetlig samarbeid.
-            </h2>
-            <Link href="/bakgrunn" className="bg-primary-dark text-white px-6 py-3 rounded font-medium hover:opacity-90 transition-opacity inline-block text-sm">
-              Les om prosjektet
-            </Link>
-          </div>
-        </section>
+        {/* Bottom Section */}
+        <BottomSection />
       </main>
       <Footer />
     </>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BottomSection from '@/components/BottomSection'
 import { images } from '@/lib/images'
 
 export default function TiltakPage() {
@@ -60,6 +61,9 @@ export default function TiltakPage() {
             </div>
           </div>
         </section>
+
+        {/* Bottom Section */}
+        <BottomSection />
       </main>
       <Footer />
     </>
