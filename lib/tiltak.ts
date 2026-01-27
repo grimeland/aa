@@ -6,6 +6,11 @@ export type Tidsperspektiv = 'kort' | 'mellomlang' | 'lang'
 export type Kompleksitet = 'lav' | 'middels' | 'høy'
 export type Tiltakspakke = 'fysisk-infrastruktur' | 'vertskap-formidling' | 'organisering-kompetanse'
 
+export interface FremdriftSteg {
+  tekst: string
+  blokkerer?: string
+}
+
 export interface Tiltak {
   id: string
   title: string
@@ -13,7 +18,8 @@ export interface Tiltak {
   beskrivelse: string
   hvorfor: string
   visualiseringer?: string[]
-  fremdrift?: string
+  utfordringer?: string[]
+  fremdriftSteg?: FremdriftSteg[]
   status: TiltakStatus
   tidsperspektiv: Tidsperspektiv
   kompleksitet: Kompleksitet
@@ -30,12 +36,25 @@ export const tiltakData: Tiltak[] = [
     id: 'toaletter-hygiene',
     title: 'Toaletter og hygiene',
     tiltakspakke: 'fysisk-infrastruktur',
-    beskrivelse: 'Mobile toaletter plasseres strategisk. Permanent løsning utredes med restaurant og grunneiere.',
-    hvorfor: 'Mangel på tilstrekkelige toalettfasiliteter skaper problemer for både besøkende og lokalbefolkning, og kan føre til miljøproblemer.',
-    status: 'planlagt',
+    beskrivelse: 'Mobile toaletter plasseres strategisk ved brygga og inngang til Å. Permanent løsning utredes i samarbeid med restaurant og grunneiere.',
+    hvorfor: 'Bare tre offentlige toaletter for tusenvis av besøkende. Skaper hygieneproblem og frustrasjon hos både turister og lokalbefolkning.',
+    utfordringer: [
+      'Vanskelig grunnforhold (fjell, grunnvann)',
+      'Uavklart hvem som eier tomt for permanent løsning',
+      'Hvem har driftsansvar for permanent toalett?',
+      'Vinterbruk: Kan rør fryse ved -20°C?',
+      'Mangler avklaring på kloakkløsning',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Avklare tomt med grunneiere', blokkerer: 'Bestilling av mobile' },
+      { tekst: 'Bestille mobile enheter (2 stk)', blokkerer: 'Når tomt er avklart' },
+      { tekst: 'Plassere mobile enheter', blokkerer: 'Før høysesongen starter' },
+      { tekst: 'Utrede permanent løsning', blokkerer: 'Kan starte parallelt med mobile' },
+    ],
+    status: 'pågår',
     tidsperspektiv: 'kort',
     kompleksitet: 'middels',
-    sesong: 'Hele året, med fokus på sommersesongen',
+    sesong: 'Kritisk før påske/sommersesongen',
   },
   {
     id: 'parkering-flyt',
@@ -43,6 +62,18 @@ export const tiltakData: Tiltak[] = [
     tiltakspakke: 'fysisk-infrastruktur',
     beskrivelse: 'Definere og merke parkeringsområder for biler og busser. Samarbeid med bussoperatører for drop-off-soner. Flerspråklig skilting og ladestasjoner.',
     hvorfor: 'Parkeringspresset skaper kaos og konflikter, spesielt i høysesongen. Tydelige løsninger er nødvendig.',
+    utfordringer: [
+      'Begrenset areal tilgjengelig for parkering',
+      'Konflikter mellom turister og lokalbefolkning',
+      'Bussoperatører har ulike behov og rutiner',
+      'Finansiering av infrastruktur må avklares',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Kartlegge eksisterende parkeringsareal', blokkerer: 'Grunnlag for videre planlegging' },
+      { tekst: 'Dialog med bussoperatører', blokkerer: 'Avklare drop-off-behov' },
+      { tekst: 'Utarbeide skiltplan', blokkerer: 'Etter arealplan er klar' },
+      { tekst: 'Implementere skilting og merking', blokkerer: 'Før høysesongen' },
+    ],
     status: 'pågår',
     tidsperspektiv: 'mellomlang',
     kompleksitet: 'høy',
@@ -52,8 +83,18 @@ export const tiltakData: Tiltak[] = [
     id: 'soppelhandtering',
     title: 'Søppelhåndtering',
     tiltakspakke: 'fysisk-infrastruktur',
-    beskrivelse: 'Plassere flere søppelkasser ved strategiske punkter. Tydelig merking og kildesorteringsstasjon ved inngang «Ta med søppel hjem»-kampanje.',
+    beskrivelse: 'Plassere flere søppelkasser ved strategiske punkter. Tydelig merking og kildesorteringsstasjon ved inngang. «Ta med søppel hjem»-kampanje.',
     hvorfor: 'Økt besøkstrykk fører til mer avfall som må håndteres på en bærekraftig måte.',
+    utfordringer: [
+      'Tømmefrekvens må økes i høysesongen',
+      'Kildesortering er vanskelig å kommunisere til turister',
+      'Søppelkasser kan tiltrekke måker og andre dyr',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Kartlegge behov for søppelkasser', blokkerer: 'Grunnlag for innkjøp' },
+      { tekst: 'Bestille og plassere søppelkasser', blokkerer: 'Før sesongen' },
+      { tekst: 'Utvikle informasjonskampanje', blokkerer: 'Parallelt med fysiske tiltak' },
+    ],
     status: 'pågår',
     tidsperspektiv: 'kort',
     kompleksitet: 'middels',
@@ -65,6 +106,18 @@ export const tiltakData: Tiltak[] = [
     tiltakspakke: 'fysisk-infrastruktur',
     beskrivelse: 'Stenge kjøring til brygga i høysesongen. Tillate varetransport og beboere. Tydelig skilting og fysiske sperrer. Dialog med lokalbefolkning om praktiske løsninger.',
     hvorfor: 'Redusere trafikk og forbedre opplevelsen for besøkende og lokalbefolkning i sentrum.',
+    utfordringer: [
+      'Motstand fra enkelte beboere og næringsdrivende',
+      'Varetransport må fortsatt fungere',
+      'Behov for unntak og dispensasjoner',
+      'Håndhevelse av regelverket',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Dialog med lokalbefolkning', blokkerer: 'Forankring av tiltaket' },
+      { tekst: 'Utarbeide regelverk og unntak', blokkerer: 'Etter dialog' },
+      { tekst: 'Skilting og fysiske sperrer', blokkerer: 'Før implementering' },
+      { tekst: 'Prøveordning i høysesongen', blokkerer: 'Evaluering etterpå' },
+    ],
     status: 'planlagt',
     tidsperspektiv: 'mellomlang',
     kompleksitet: 'høy',
@@ -76,6 +129,16 @@ export const tiltakData: Tiltak[] = [
     tiltakspakke: 'fysisk-infrastruktur',
     beskrivelse: 'Utrede bedre bussavganger, sykkelutleie, samkjøring og evt. fergeforbindelse. Ladestasjoner for el-sykler og el-biler. Gjøre det enklere å komme til Å uten bil.',
     hvorfor: 'Redusere bilavhengighet og forbedre bærekraftig transport til og fra Å.',
+    utfordringer: [
+      'Avhengig av fylkeskommunens rutetilbud',
+      'Begrenset marked for sykkelutleie',
+      'Infrastruktur for lading krever investering',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Kartlegge eksisterende tilbud', blokkerer: 'Grunnlag for forbedring' },
+      { tekst: 'Dialog med fylkeskommunen om buss', blokkerer: 'Politisk forankring' },
+      { tekst: 'Utrede sykkelutleie-muligheter', blokkerer: 'Samarbeid med lokale aktører' },
+    ],
     status: 'planlagt',
     tidsperspektiv: 'kort',
     kompleksitet: 'middels',
@@ -86,7 +149,17 @@ export const tiltakData: Tiltak[] = [
     title: 'Naturrestaurering',
     tiltakspakke: 'fysisk-infrastruktur',
     beskrivelse: 'Kartlegge slitasje, etablere vernesoner rundt hekkeplasser og gjenopprette vegetasjon. Merke stier tydelig for å lede folk bort fra sårbare områder.',
-    hvorfor: 'Naturmonumenter er sårbare og trenger beskyttelse mot slitasje fra besøkende.',
+    hvorfor: 'Naturområder er sårbare og trenger beskyttelse mot slitasje fra besøkende.',
+    utfordringer: [
+      'Krever fagkompetanse på naturforvaltning',
+      'Langsiktig arbeid som tar tid',
+      'Balanse mellom tilgjengelighet og vern',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Kartlegge slitasje og sårbare områder', blokkerer: 'Faglig grunnlag' },
+      { tekst: 'Etablere vernesoner', blokkerer: 'Dialog med grunneiere' },
+      { tekst: 'Skilte og merke stier', blokkerer: 'Etter soneavklaring' },
+    ],
     status: 'planlagt',
     tidsperspektiv: 'lang',
     kompleksitet: 'middels',
@@ -97,8 +170,18 @@ export const tiltakData: Tiltak[] = [
     id: 'informasjonsskilt',
     title: 'Informasjonsskilt og veivisere',
     tiltakspakke: 'vertskap-formidling',
-    beskrivelse: 'Utvikle et system med informasjonsskilt som formidler viktig informasjon om kultur, natur og regler.',
+    beskrivelse: 'Utvikle et system med informasjonsskilt som formidler viktig informasjon om kultur, natur og regler. Flerspråklig innhold tilpasset hovedgruppene av turister.',
     hvorfor: 'Tydelig formidling er nødvendig for å gjøre besøkende bevisste på lokale verdier og forventninger.',
+    utfordringer: [
+      'Mange språk å dekke (norsk, engelsk, tysk, kinesisk)',
+      'Skiltene må tåle værforhold',
+      'Balanse mellom informasjon og visuell forurensning',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Utvikle innhold og design', blokkerer: 'Faglig kvalitetssikring' },
+      { tekst: 'Oversette til hovedspråk', blokkerer: 'Etter norsk innhold er klart' },
+      { tekst: 'Produsere og montere skilt', blokkerer: 'Før sesongen' },
+    ],
     status: 'pågår',
     tidsperspektiv: 'kort',
     kompleksitet: 'middels',
@@ -109,8 +192,18 @@ export const tiltakData: Tiltak[] = [
     id: 'kompetansebygging',
     title: 'Kompetansebygging for lokale aktører',
     tiltakspakke: 'organisering-kompetanse',
-    beskrivelse: 'Utvikle og tilby kurs og opplæring for lokale aktører innen besøksforvaltning.',
+    beskrivelse: 'Utvikle og tilby kurs og opplæring for lokale aktører innen besøksforvaltning. Dele erfaringer og beste praksis.',
     hvorfor: 'Lokale aktører trenger kunnskap og verktøy for å håndtere besøksforvaltning på en bærekraftig måte.',
+    utfordringer: [
+      'Travle aktører med begrenset tid',
+      'Varierende kompetansenivå',
+      'Behov for kontinuerlig oppdatering',
+    ],
+    fremdriftSteg: [
+      { tekst: 'Kartlegge kompetansebehov', blokkerer: 'Dialog med aktører' },
+      { tekst: 'Utvikle kursinnhold', blokkerer: 'Etter behovsanalyse' },
+      { tekst: 'Gjennomføre første kurs', blokkerer: 'Før sesongen' },
+    ],
     status: 'planlagt',
     tidsperspektiv: 'lang',
     kompleksitet: 'middels',

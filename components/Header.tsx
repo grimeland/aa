@@ -3,7 +3,11 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
-export default function Header() {
+interface HeaderProps {
+  darkMode?: boolean
+}
+
+export default function Header({ darkMode = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -14,34 +18,37 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Use dark text if darkMode is true OR if scrolled
+  const useDarkText = darkMode || isScrolled
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white/70 backdrop-blur-md' : 'bg-transparent'
     }`}>
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className={`text-base font-normal transition-colors duration-300 ${
-          isScrolled ? 'text-gray-900' : 'text-white'
+          useDarkText ? 'text-gray-900' : 'text-white'
         }`}>
           Folk, fuggel og fesk
         </Link>
         <div className="flex items-center gap-6">
           <Link href="/tiltak" className={`text-base font-normal transition-colors duration-300 ${
-            isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
+            useDarkText ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
           }`}>
             Tiltak
           </Link>
           <Link href="/bakgrunn" className={`text-base font-normal transition-colors duration-300 ${
-            isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
+            useDarkText ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
           }`}>
             Bakgrunn
           </Link>
           <Link href="/om-prosjekt" className={`text-base font-normal transition-colors duration-300 ${
-            isScrolled ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
+            useDarkText ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
           }`}>
             Om prosjekt
           </Link>
           <Link href="/kontakt" className={`text-base font-normal px-5 py-2 rounded-full transition-colors duration-300 ${
-            isScrolled 
+            useDarkText 
               ? 'bg-gray-900 text-white hover:bg-gray-800' 
               : 'bg-white text-gray-900 hover:bg-white/90'
           }`}>
