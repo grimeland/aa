@@ -12,7 +12,7 @@ export default function OrganiseringKompetansePage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative py-32 text-white">
+        <section className="relative min-h-[70vh] flex items-center justify-center text-white">
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70 z-10"></div>
           <div 
             className="absolute inset-0 bg-cover bg-center z-0"
@@ -20,7 +20,7 @@ export default function OrganiseringKompetansePage() {
               backgroundImage: `url('${images.organiseringKompetanse}')`
             }}
           ></div>
-          <div className="relative z-20 container mx-auto px-4 text-center">
+          <div className="relative z-20 container mx-auto px-4 text-center py-32">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Organisering og kompetanse
             </h1>
