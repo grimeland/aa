@@ -4,7 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BottomSection from '@/components/BottomSection'
 import { images } from '@/lib/images'
-import { getTiltakByPakke, getStatusIcon, getTidsperspektivTekst } from '@/lib/tiltak'
+import { getTiltakByPakke, getTidsperspektivTekst } from '@/lib/tiltak'
 
 export default function OrganiseringKompetansePage() {
   const tiltak = getTiltakByPakke('organisering-kompetanse')
