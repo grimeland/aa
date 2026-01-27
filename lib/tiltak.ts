@@ -11,15 +11,44 @@ export interface FremdriftSteg {
   blokkerer?: string
 }
 
+export interface Målgruppe {
+  gruppe: string
+  beskrivelse: string
+}
+
+export interface Engasjement {
+  gruppe: string
+  handling: string
+}
+
+export interface ForumInfo {
+  dato: string
+  tid: string
+}
+
+export interface EkstraKontakt {
+  navn: string
+  rolle: string
+  epost: string
+}
+
 export interface Tiltak {
   id: string
   title: string
+  ikon?: string
+  undertittel?: string
   tiltakspakke: Tiltakspakke
   beskrivelse: string
   hvorfor: string
   visualiseringer?: string[]
   utfordringer?: string[]
   fremdriftSteg?: FremdriftSteg[]
+  målgrupper?: Målgruppe[]
+  engasjement?: Engasjement[]
+  kontaktEpost?: string
+  kontaktTekst?: string
+  forumInfo?: ForumInfo
+  ekstraKontakter?: EkstraKontakt[]
   status: TiltakStatus
   tidsperspektiv: Tidsperspektiv
   kompleksitet: Kompleksitet
@@ -34,22 +63,37 @@ export const tiltakData: Tiltak[] = [
   // Fysisk infrastruktur - maks 6 tiltak
   {
     id: 'toaletter-hygiene',
-    title: 'Toaletter og hygiene',
+    title: 'Toaletter & hygiene',
+    ikon: '🚽',
     tiltakspakke: 'fysisk-infrastruktur',
-    beskrivelse: 'Mobile toaletter plasseres strategisk ved brygga og inngang til Å. Permanent løsning utredes i samarbeid med restaurant og grunneiere.',
-    hvorfor: 'Bare tre offentlige toaletter for tusenvis av besøkende. Skaper hygieneproblem og frustrasjon hos både turister og lokalbefolkning.',
+    undertittel: 'Mobile toaletter plasseres strategisk i Å',
+    beskrivelse: 'Tiltaket handler om å etablere tilstrekkelig toalettkapasitet for både besøkende og lokalbefolkning. Mobile toalettenheter kan plasseres ved to kritiske punkter: ved brygga hvor de fleste besøkende samles, og ved innkjøringen til bygda. Parallelt med dette kan en permanent toalettløsning utredes – en løsning som fungerer hele året og passer inn i Å sin arkitektur. En permanent løsning krever avklaring av tomt, kloakksystem, drift og finansiering.',
+    hvorfor: 'I dag har Å bare tre offentlige toaletter for tusenvis av besøkende i sesongen. Resultatet er synlig: folk bruker private eiendommer, går ut i naturen, eller drar videre frustrerte. I turistundersøkelsen scoret toaletter lavest av alle fasiliteter, og kommentarene var tydelige: "We couldn\'t find any toilets. Had to walk back to the parking area."\n\nDette handler om hygiene, verdighet og grunnleggende infrastruktur. Uten tilstrekkelig toalettkapasitet blir andre tiltak vanskeligere å gjennomføre. Både lokalbefolkning og besøkende peker på dette som ett av de mest presserende utfordringene å løse.',
     utfordringer: [
       'Vanskelig grunnforhold (fjell, grunnvann)',
       'Uavklart hvem som eier tomt for permanent løsning',
-      'Hvem har driftsansvar for permanent toalett?',
-      'Vinterbruk: Kan rør fryse ved -20°C?',
-      'Mangler avklaring på kloakkløsning',
+      'Driftsansvar uklart (hvem tømmer, rengjør, vedlikeholder?)',
+      'Vinterbruk (kan rør fryse ved -20°C?)',
+      'Kloakkløsning må godkjennes av Statsforvalter',
     ],
     fremdriftSteg: [
-      { tekst: 'Avklare tomt med grunneiere', blokkerer: 'Bestilling av mobile' },
+      { tekst: 'Avklare tomt med grunneiere', blokkerer: 'Blokkerer: Bestilling av mobile enheter' },
       { tekst: 'Bestille mobile enheter (2 stk)', blokkerer: 'Når tomt er avklart' },
       { tekst: 'Plassere mobile enheter', blokkerer: 'Før høysesongen starter' },
       { tekst: 'Utrede permanent løsning', blokkerer: 'Kan starte parallelt med mobile' },
+    ],
+    kontaktEpost: 'erlend@travers.no',
+    kontaktTekst: 'Send innspill til erlend@travers.no eller kom på Å-Forum 12. februar',
+    forumInfo: {
+      dato: '12. februar 2025',
+      tid: '18:00',
+    },
+    ekstraKontakter: [
+      {
+        navn: 'Tina Hansen',
+        rolle: 'Reiselivskoordinator',
+        epost: 'tina.hansen@moskenes.kommune.no',
+      },
     ],
     status: 'pågår',
     tidsperspektiv: 'kort',

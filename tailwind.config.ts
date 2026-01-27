@@ -20,7 +20,7 @@ const config: Config = {
           light: '#4a6fa5',
         },
         neutral: {
-          light: '#F8F4ED',
+          light: '#FDFBF7',
           DEFAULT: '#e8e3d5',
         },
       },

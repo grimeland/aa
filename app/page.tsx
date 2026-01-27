@@ -39,72 +39,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Introduction Section */}
-        <section className="bg-neutral-light py-32">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-8">
-              <h2 className="text-sm uppercase tracking-wider text-gray-600 mb-4">Visjonen</h2>
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                Å skal bli et sted som fungerer godt for folk, fuggel og fesk – hele året.
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-12">
-                Gjennom et omfattende arbeid har vi identifisert tre hovedområder som er kritiske for å skape en bærekraftig besøksforvaltning på Å.
-              </p>
-            </div>
-            
-            {/* Principles Section - Illustration Cards */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="mb-6 flex items-center justify-center h-32">
-                  <Image 
-                    src={images.lokalsamfunn} 
-                    alt="Lokalsamfunn" 
-                    width={128}
-                    height={128}
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-800">Sikre lokalsamfunnets interesser</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Vi sikrer at lokalsamfunnet får en god hverdag og at lokal identitet og kultur bevares for fremtiden.
-                </p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="mb-6 flex items-center justify-center h-32">
-                  <Image 
-                    src={images.natur} 
-                    alt="Natur" 
-                    width={128}
-                    height={128}
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-800">Beskytte naturen</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Vi beskytter det unike naturmiljøet og sikrer at flora og fauna kan trives også med økt besøk.
-                </p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="mb-6 flex items-center justify-center h-32">
-                  <Image 
-                    src={images.turister} 
-                    alt="Turister" 
-                    width={128}
-                    height={128}
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-800">Bevisstgjøre turister</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Vi gjør turister bevisste på kultur og natur, slik at de kan oppleve Å på en respektfull måte.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Action Packages Section */}
         <section id="tiltak" className="bg-neutral-light py-32">
           <div className="container mx-auto px-4">
@@ -200,6 +134,72 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Visjonen Section */}
+        <section className="bg-neutral-light py-32">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-8">
+              <h2 className="text-sm uppercase tracking-wider text-gray-600 mb-4">Visjonen</h2>
+              <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                Å skal bli et sted som fungerer godt for folk, fuggel og fesk – hele året.
+              </h3>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-12">
+                Gjennom et omfattende arbeid har vi identifisert tre hovedområder som er kritiske for å skape en bærekraftig besøksforvaltning på Å.
+              </p>
+            </div>
+            
+            {/* Principles Section - Illustration Cards */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="bg-white p-8 rounded-lg shadow-md">
+                <div className="mb-6 flex items-center justify-center h-32">
+                  <Image 
+                    src={images.lokalsamfunn} 
+                    alt="Lokalsamfunn" 
+                    width={128}
+                    height={128}
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">Sikre lokalsamfunnets interesser</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Vi sikrer at lokalsamfunnet får en god hverdag og at lokal identitet og kultur bevares for fremtiden.
+                </p>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-md">
+                <div className="mb-6 flex items-center justify-center h-32">
+                  <Image 
+                    src={images.natur} 
+                    alt="Natur" 
+                    width={128}
+                    height={128}
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">Beskytte naturen</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Vi beskytter det unike naturmiljøet og sikrer at flora og fauna kan trives også med økt besøk.
+                </p>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-md">
+                <div className="mb-6 flex items-center justify-center h-32">
+                  <Image 
+                    src={images.turister} 
+                    alt="Turister" 
+                    width={128}
+                    height={128}
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">Bevisstgjøre turister</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Vi gjør turister bevisste på kultur og natur, slik at de kan oppleve Å på en respektfull måte.
+                </p>
+              </div>
             </div>
           </div>
         </section>
