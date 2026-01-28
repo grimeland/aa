@@ -27,7 +27,7 @@ export default function BottomSection() {
           Lokalt forankret. Helhetlig samarbeid.
         </h2>
         <Link 
-          href="/bakgrunn" 
+          href="/om-prosjekt" 
           className="bg-primary-dark text-white px-6 py-3 rounded font-medium hover:opacity-90 transition-opacity inline-block text-sm"
         >
           Les om prosjektet

@@ -66,11 +66,6 @@ export default function Header({ darkMode = false }: HeaderProps) {
           }`}>
             Tiltak
           </Link>
-          <Link href="/bakgrunn" className={`text-base font-normal transition-colors duration-300 ${
-            useDarkText ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
-          }`}>
-            Bakgrunn
-          </Link>
           <Link href="/om-prosjekt" className={`text-base font-normal transition-colors duration-300 ${
             useDarkText ? 'text-gray-900 hover:text-gray-600' : 'text-white hover:text-white/80'
           }`}>
