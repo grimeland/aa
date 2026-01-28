@@ -16,12 +16,12 @@ export default function BottomSection() {
       <div 
         className="absolute inset-0 z-10"
         style={{
-          background: 'linear-gradient(to bottom, #F8F4ED 0%, #F8F4ED 15%, rgba(248,244,237,0.8) 25%, rgba(248,244,237,0.4) 35%, transparent 50%)'
+          background: 'linear-gradient(to bottom, #FDFBF7 0%, #FDFBF7 10%, rgba(253,251,247,0.9) 20%, rgba(253,251,247,0.7) 30%, rgba(253,251,247,0.4) 40%, transparent 55%)'
         }}
       ></div>
       
       {/* Content positioned in the gradient area - higher up */}
-      <div className="relative z-20 container mx-auto px-4 pt-12 text-center">
+      <div className="relative z-20 container mx-auto px-4 pt-32 text-center">
         <p className="text-sm text-gray-600 mb-4">Bakgrunnen for prosjektet</p>
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-primary-dark">
           Lokalt forankret. Helhetlig samarbeid.

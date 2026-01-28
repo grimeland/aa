@@ -122,7 +122,7 @@ export default function TiltakDetailPage({ params }: PageProps) {
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
                 </span>
-                <span>Tilbake</span>
+                <span>Tilbake til tiltakspakke</span>
               </Link>
             </div>
 
@@ -165,10 +165,13 @@ export default function TiltakDetailPage({ params }: PageProps) {
 
               {/* Right column - Innhold */}
               <div>
-                {/* Status badge */}
-                <div className="mb-4">
+                {/* Tiltak badge */}
+                <div className="mb-4 flex items-center gap-2">
                   <span className="inline-block bg-gray-900 text-white text-xs font-medium px-3 py-1 rounded-full">
-                    {getStatusIcon(tiltak.status)} {statusTekst[tiltak.status]}
+                    Tiltak
+                  </span>
+                  <span className="text-gray-500 text-sm">
+                    {pakkeNavn[tiltak.tiltakspakke]}
                   </span>
                 </div>
 

@@ -28,9 +28,9 @@ export default function TiltakPage() {
 
   return (
     <>
-      <Header />
-      <main className="pt-20">
-        <section className="bg-neutral-light py-20">
+      <Header darkMode />
+      <main className="pt-20" style={{ backgroundColor: '#F8F4ED' }}>
+        <section className="py-32">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               Tiltak for besøksforvaltning

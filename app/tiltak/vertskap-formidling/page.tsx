@@ -80,9 +80,7 @@ export default function VertskapFormidlingPage() {
         <section className="py-20 bg-neutral-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <span className="inline-block bg-gray-900 text-white px-4 py-1.5 text-sm rounded-full mb-8">
-                Forutsetninger
-              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800 text-center">Forutsetninger</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {/* Aktører Card */}
                 <div className="bg-white rounded-2xl p-6">
@@ -225,7 +223,7 @@ export default function VertskapFormidlingPage() {
         </section>
 
         {/* Hva sier folk? Section */}
-        <section className="pt-20 pb-32 bg-neutral-light">
+        <section className="pt-20 pb-48 bg-neutral-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-16 text-gray-800 text-center">Hva sier folk?</h2>
