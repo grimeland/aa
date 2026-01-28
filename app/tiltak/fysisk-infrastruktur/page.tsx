@@ -152,7 +152,7 @@ export default function FysiskInfrastrukturPage() {
                     <div className="px-1 flex flex-col flex-grow">
                       <p className="text-gray-500 text-sm mb-1">{getTidsperspektivTekst(item.tidsperspektiv)}</p>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">{item.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                      <p className="text-gray-600 text-sm leading-relaxed flex-grow line-clamp-4">
                         {item.beskrivelse}
                       </p>
                       

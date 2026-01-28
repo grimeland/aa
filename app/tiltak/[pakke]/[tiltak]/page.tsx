@@ -194,6 +194,17 @@ export default function TiltakDetailPage({ params }: PageProps) {
                       {showMessage}
                     </div>
                   )}
+
+                  {/* Ta kontakt - knapp */}
+                  <a 
+                    href={`mailto:erlend@travers.as?subject=Innspill til ${tiltak.title}`}
+                    className="mt-3 w-full py-3 rounded-xl text-sm font-medium transition-all inline-flex items-center justify-center gap-2 text-gray-700 hover:opacity-90"
+                    style={{
+                      backgroundColor: '#E7E0D8',
+                    }}
+                  >
+                    Ta kontakt
+                  </a>
                 </div>
 
                 {/* Beskrivelse */}
@@ -248,18 +259,6 @@ export default function TiltakDetailPage({ params }: PageProps) {
                   </div>
                 )}
 
-                {/* Innspill og kontakt */}
-                {tiltak.kontaktEpost && (
-                  <div className="border-t border-gray-200 py-6">
-                    <p className="text-gray-700 mb-4">Spørsmål eller innspill til tiltaket?</p>
-                    <a 
-                      href={`mailto:${tiltak.kontaktEpost}?subject=Innspill til ${tiltak.title}`}
-                      className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors"
-                    >
-                      Ta kontakt
-                    </a>
-                  </div>
-                )}
               </div>
             </div>
 
@@ -288,7 +287,7 @@ export default function TiltakDetailPage({ params }: PageProps) {
                       <div className="px-1 flex flex-col flex-grow">
                         <p className="text-gray-500 text-sm mb-1">{getTidsperspektivTekst(annetTiltak.tidsperspektiv)}</p>
                         <h3 className="text-lg font-semibold text-gray-900 mb-3">{annetTiltak.title}</h3>
-                        <p className="text-gray-600 text-sm leading-relaxed flex-grow line-clamp-3">
+                        <p className="text-gray-600 text-sm leading-relaxed flex-grow line-clamp-4">
                           {annetTiltak.beskrivelse}
                         </p>
                         
