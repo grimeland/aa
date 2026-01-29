@@ -83,9 +83,9 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: '⏸️ Ikke påbegynt', value: 'ikke-pabegynt' },
-          { title: '📋 Under planlegging', value: 'planlegging' },
-          { title: '⚡ Pågår', value: 'pågår' },
+          { title: 'Ikke påbegynt', value: 'ikke-pabegynt' },
+          { title: 'Under planlegging', value: 'planlegging' },
+          { title: 'Pågår', value: 'pågår' },
         ],
         layout: 'radio',
       },
@@ -219,14 +219,14 @@ export default defineType({
       media: 'hovedbilde',
     },
     prepare({ title, pakkeTitle, status, media }) {
-      const statusIkon: Record<string, string> = {
-        'ikke-pabegynt': '⏸️',
-        'planlegging': '📋',
-        'pågår': '⚡',
+      const statusTekst: Record<string, string> = {
+        'ikke-pabegynt': '[Ikke påbegynt]',
+        'planlegging': '[Planlegging]',
+        'pågår': '[Pågår]',
       }
       return {
-        title: `${statusIkon[status] || ''} ${title}`,
-        subtitle: pakkeTitle || 'Ingen pakke',
+        title: title,
+        subtitle: `${pakkeTitle || 'Ingen pakke'} ${statusTekst[status] || ''}`,
         media,
       }
     },
