@@ -5,9 +5,10 @@ import { useState, useEffect, useRef } from 'react'
 
 interface HeaderProps {
   darkMode?: boolean
+  transparent?: boolean
 }
 
-export default function Header({ darkMode = false }: HeaderProps) {
+export default function Header({ darkMode = false, transparent = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const lastScrollY = useRef(0)
@@ -53,7 +54,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
     } ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}
-    style={darkMode ? { backgroundColor: isScrolled ? 'rgba(253, 251, 247, 0.85)' : '#FDFBF7' } : undefined}>
+    style={darkMode ? { backgroundColor: isScrolled ? 'rgba(253, 251, 247, 0.85)' : (transparent ? 'transparent' : '#FDFBF7') } : undefined}>
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className={`text-base font-normal transition-colors duration-300 ${
           useDarkText ? 'text-gray-900' : 'text-white'

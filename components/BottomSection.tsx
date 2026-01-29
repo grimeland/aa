@@ -1,7 +1,19 @@
 import Link from 'next/link'
 import { images } from '@/lib/images'
 
-export default function BottomSection() {
+interface BottomSectionProps {
+  bgColor?: string
+}
+
+export default function BottomSection({ bgColor = '#FDFBF7' }: BottomSectionProps) {
+  // Convert hex to rgba for gradient
+  const hexToRgba = (hex: string, alpha: number) => {
+    const r = parseInt(hex.slice(1, 3), 16)
+    const g = parseInt(hex.slice(3, 5), 16)
+    const b = parseInt(hex.slice(5, 7), 16)
+    return `rgba(${r},${g},${b},${alpha})`
+  }
+
   return (
     <section className="relative min-h-[850px]">
       {/* Background image */}
@@ -16,7 +28,7 @@ export default function BottomSection() {
       <div 
         className="absolute inset-0 z-10"
         style={{
-          background: 'linear-gradient(to bottom, #FDFBF7 0%, #FDFBF7 10%, rgba(253,251,247,0.9) 20%, rgba(253,251,247,0.7) 30%, rgba(253,251,247,0.4) 40%, transparent 55%)'
+          background: `linear-gradient(to bottom, ${bgColor} 0%, ${bgColor} 10%, ${hexToRgba(bgColor, 0.9)} 20%, ${hexToRgba(bgColor, 0.7)} 30%, ${hexToRgba(bgColor, 0.4)} 40%, transparent 55%)`
         }}
       ></div>
       

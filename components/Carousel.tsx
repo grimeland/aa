@@ -12,9 +12,10 @@ interface CarouselItem {
 
 interface CarouselProps {
   items: CarouselItem[]
+  bgColor?: string
 }
 
-export default function Carousel({ items }: CarouselProps) {
+export default function Carousel({ items, bgColor = '#FDFBF7' }: CarouselProps) {
   const [isPaused, setIsPaused] = useState(false)
 
   // Duplicate items for seamless loop
@@ -23,10 +24,16 @@ export default function Carousel({ items }: CarouselProps) {
   return (
     <div className="relative overflow-hidden mx-8 md:mx-16 lg:mx-24 rounded-2xl">
       {/* Left fade */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-neutral-light to-transparent z-10 pointer-events-none"></div>
+      <div 
+        className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 pointer-events-none"
+        style={{ background: `linear-gradient(to right, ${bgColor}, transparent)` }}
+      ></div>
       
       {/* Right fade */}
-      <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-neutral-light to-transparent z-10 pointer-events-none"></div>
+      <div 
+        className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 pointer-events-none"
+        style={{ background: `linear-gradient(to left, ${bgColor}, transparent)` }}
+      ></div>
       
       {/* Animated container */}
       <div 
