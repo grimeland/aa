@@ -5,6 +5,10 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Folk, fuggel og fesk - Å i Lofoten',
   description: 'Prinsipper og tiltak for besøksforvaltning på Å',
+  icons: {
+    icon: '/icons/logo_aa.svg',
+    apple: '/icons/logo_aa.svg',
+  },
 }
 
 const moderat = localFont({

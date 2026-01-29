@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 
 interface HeaderProps {
@@ -56,9 +57,16 @@ export default function Header({ darkMode = false, transparent = false }: Header
     }`}
     style={darkMode ? { backgroundColor: isScrolled ? 'rgba(253, 251, 247, 0.85)' : (transparent ? 'transparent' : '#FDFBF7') } : undefined}>
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className={`text-base font-normal transition-colors duration-300 ${
+        <Link href="/" className={`flex items-center gap-2 text-base font-normal transition-colors duration-300 ${
           useDarkText ? 'text-gray-900' : 'text-white'
         }`}>
+          <Image 
+            src="/icons/logo_aa.svg" 
+            alt="Å logo" 
+            width={28} 
+            height={28}
+            className={`transition-all duration-300 ${useDarkText ? '' : 'brightness-0 invert'}`}
+          />
           Folk, fuggel og fesk
         </Link>
         <div className="flex items-center gap-6">
