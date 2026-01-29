@@ -35,19 +35,6 @@ export async function getAndreTiltak(pakke: string, currentSlug: string): Promis
 }
 
 // Helper functions that were in lib/tiltak.ts
-export function getStatusIcon(status: string): string {
-  switch (status) {
-    case 'ikke-pabegynt':
-      return '⏸️'
-    case 'planlegging':
-      return '📋'
-    case 'pågår':
-      return '⚡'
-    default:
-      return ''
-  }
-}
-
 export function getStatusText(status: string): string {
   switch (status) {
     case 'ikke-pabegynt':
@@ -60,6 +47,9 @@ export function getStatusText(status: string): string {
       return ''
   }
 }
+
+// Alias for backwards compatibility
+export const getStatusIcon = getStatusText
 
 export function getKompleksitetDots(kompleksitet: string): string {
   switch (kompleksitet) {
