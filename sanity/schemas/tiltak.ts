@@ -210,6 +210,22 @@ export default defineType({
       type: 'array',
       of: [{ type: 'string' }],
     }),
+    defineField({
+      name: 'supportCount',
+      title: 'Antall likes',
+      type: 'number',
+      initialValue: 0,
+      readOnly: true,
+      description: 'Oppdateres automatisk når besøkende liker tiltaket',
+    }),
+    defineField({
+      name: 'supporters',
+      title: 'Supporters',
+      type: 'array',
+      of: [{ type: 'string' }],
+      hidden: true,
+      description: 'Lagrer anonymiserte ID-er for å hindre dobbeltstemming',
+    }),
   ],
   preview: {
     select: {

@@ -1,30 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
+import { createClient } from '@sanity/client'
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'support.json')
-
-interface SupportData {
-  [tiltakId: string]: {
-    count: number
-    ips: string[]
-  }
-}
-
-async function readSupportData(): Promise<SupportData> {
-  try {
-    const data = await fs.readFile(DATA_FILE, 'utf-8')
-    return JSON.parse(data)
-  } catch {
-    return {}
-  }
-}
-
-async function writeSupportData(data: SupportData): Promise<void> {
-  const dir = path.dirname(DATA_FILE)
-  await fs.mkdir(dir, { recursive: true })
-  await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2))
-}
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: '2024-01-01',
+  token: process.env.SANITY_WRITE_TOKEN,
+  useCdn: false,
+})
 
 function getClientIP(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for')
@@ -39,58 +22,105 @@ function getClientIP(request: NextRequest): string {
   return 'unknown'
 }
 
+// Simple hash function to create a unique identifier from IP
+function hashIP(ip: string): string {
+  let hash = 0
+  for (let i = 0; i < ip.length; i++) {
+    const char = ip.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash
+  }
+  return Math.abs(hash).toString(36)
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const tiltakId = params.id
+  const tiltakSlug = params.id
   const ip = getClientIP(request)
-  const data = await readSupportData()
+  const ipHash = hashIP(ip)
   
-  const tiltakData = data[tiltakId] || { count: 0, ips: [] }
-  const hasSupported = tiltakData.ips.includes(ip)
-  
-  return NextResponse.json({
-    count: tiltakData.count,
-    hasSupported
-  })
+  try {
+    // Fetch tiltak by slug
+    const tiltak = await client.fetch(
+      `*[_type == "tiltak" && slug.current == $slug][0] { 
+        _id, 
+        supportCount,
+        "supporters": coalesce(supporters, [])
+      }`,
+      { slug: tiltakSlug }
+    )
+    
+    if (!tiltak) {
+      return NextResponse.json({ count: 0, hasSupported: false })
+    }
+    
+    const hasSupported = (tiltak.supporters || []).includes(ipHash)
+    
+    return NextResponse.json({
+      count: tiltak.supportCount || 0,
+      hasSupported
+    })
+  } catch (error) {
+    console.error('Error fetching support data:', error)
+    return NextResponse.json({ count: 0, hasSupported: false })
+  }
 }
 
 export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const tiltakId = params.id
+  const tiltakSlug = params.id
   const ip = getClientIP(request)
-  const data = await readSupportData()
+  const ipHash = hashIP(ip)
   
-  if (!data[tiltakId]) {
-    data[tiltakId] = { count: 0, ips: [] }
-  }
-  
-  // Check if IP already supported - if so, remove support (toggle)
-  if (data[tiltakId].ips.includes(ip)) {
-    data[tiltakId].count = Math.max(0, data[tiltakId].count - 1)
-    data[tiltakId].ips = data[tiltakId].ips.filter((i: string) => i !== ip)
+  try {
+    // Fetch tiltak by slug
+    const tiltak = await client.fetch(
+      `*[_type == "tiltak" && slug.current == $slug][0] { 
+        _id, 
+        supportCount,
+        "supporters": coalesce(supporters, [])
+      }`,
+      { slug: tiltakSlug }
+    )
     
-    await writeSupportData(data)
+    if (!tiltak) {
+      return NextResponse.json({ error: 'Tiltak not found' }, { status: 404 })
+    }
+    
+    const supporters = tiltak.supporters || []
+    const hasSupported = supporters.includes(ipHash)
+    let newCount = tiltak.supportCount || 0
+    let newSupporters = [...supporters]
+    
+    if (hasSupported) {
+      // Remove support (toggle off)
+      newCount = Math.max(0, newCount - 1)
+      newSupporters = newSupporters.filter((s: string) => s !== ipHash)
+    } else {
+      // Add support
+      newCount += 1
+      newSupporters.push(ipHash)
+    }
+    
+    // Update in Sanity
+    await client
+      .patch(tiltak._id)
+      .set({ 
+        supportCount: newCount,
+        supporters: newSupporters
+      })
+      .commit()
     
     return NextResponse.json({
-      count: data[tiltakId].count,
-      hasSupported: false,
-      message: 'Du har fjernet din støtte'
+      count: newCount,
+      hasSupported: !hasSupported
     })
+  } catch (error) {
+    console.error('Error updating support:', error)
+    return NextResponse.json({ error: 'Failed to update support' }, { status: 500 })
   }
-  
-  // Add support
-  data[tiltakId].count += 1
-  data[tiltakId].ips.push(ip)
-  
-  await writeSupportData(data)
-  
-  return NextResponse.json({
-    count: data[tiltakId].count,
-    hasSupported: true,
-    message: 'Takk for din støtte!'
-  })
 }
