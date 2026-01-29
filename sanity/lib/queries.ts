@@ -34,7 +34,10 @@ export const tiltakspakkeBySlugQuery = groq`
 
 // Hent alle tiltak
 export const allTiltakQuery = groq`
-  *[_type == "tiltak"] | order(title asc) {
+  *[_type == "tiltak"] | order(
+    select(tidsperspektiv == "kort" => 1, tidsperspektiv == "mellomlang" => 2, tidsperspektiv == "lang" => 3) asc,
+    title asc
+  ) {
     _id,
     title,
     "slug": slug.current,
@@ -53,7 +56,10 @@ export const allTiltakQuery = groq`
 
 // Hent tiltak for en spesifikk tiltakspakke (via slug)
 export const tiltakByPakkeQuery = groq`
-  *[_type == "tiltak" && tiltakspakke->slug.current == $pakke] | order(title asc) {
+  *[_type == "tiltak" && tiltakspakke->slug.current == $pakke] | order(
+    select(tidsperspektiv == "kort" => 1, tidsperspektiv == "mellomlang" => 2, tidsperspektiv == "lang" => 3) asc,
+    title asc
+  ) {
     _id,
     title,
     "slug": slug.current,
@@ -142,7 +148,7 @@ export interface SanityTiltak {
   hvorfor?: string
   hovedbilde?: any
   visualiseringer?: any[]
-  status: 'pågår' | 'planlagt' | 'ferdig'
+  status: 'ikke-pabegynt' | 'planlegging' | 'pågår'
   tidsperspektiv: 'kort' | 'mellomlang' | 'lang'
   kompleksitet: 'lav' | 'middels' | 'høy'
   sesong?: string
