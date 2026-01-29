@@ -83,12 +83,13 @@ export default defineType({
       type: 'string',
       options: {
         list: [
+          { title: '⏸️ Ikke påbegynt', value: 'ikke-pabegynt' },
+          { title: '📋 Under planlegging', value: 'planlegging' },
           { title: '⚡ Pågår', value: 'pågår' },
-          { title: '📋 Planlagt', value: 'planlagt' },
-          { title: '✅ Ferdig', value: 'ferdig' },
         ],
         layout: 'radio',
       },
+      initialValue: 'ikke-pabegynt',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -219,9 +220,9 @@ export default defineType({
     },
     prepare({ title, pakkeTitle, status, media }) {
       const statusIkon: Record<string, string> = {
+        'ikke-pabegynt': '⏸️',
+        'planlegging': '📋',
         'pågår': '⚡',
-        'planlagt': '📋',
-        'ferdig': '✅',
       }
       return {
         title: `${statusIkon[status] || ''} ${title}`,
