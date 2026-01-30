@@ -72,7 +72,7 @@ export default async function TiltakspakkePage({ params }: PageProps) {
           <section className="py-20 bg-neutral-light">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Om tiltakspakken</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Om tiltakspakken</h2>
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   <div className="space-y-4 text-gray-700 leading-relaxed prose">
                     <PortableText value={pakke.omTiltaket} />
