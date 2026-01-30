@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         {/* Main content - positioned lower */}
         <div className="mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Å brist eller bære?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Å briste eller bære?</h2>
           <p className="text-lg opacity-90">
             Prinsipper og tiltak for besøksforvaltning på Å
           </p>
